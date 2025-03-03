@@ -33,8 +33,17 @@ services:
       - mysql
     restart: always
 
+  nginx:
+    build: ./nginx
+    image: nginx
+    container_name: "nginx_cont"
+    ports:
+      - "80:80"
+    restart: always
+    depends_on:
+      - mainapp
+    networks:
+      - appbridge
+
 networks:
   appbridge:
-
-volumes:
-  mysql-data:
